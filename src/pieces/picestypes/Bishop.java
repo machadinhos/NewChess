@@ -8,7 +8,7 @@ import java.util.List;
 public class Bishop extends Piece {
 
 
-	protected Bishop(final int col, final int row) {
+	public Bishop (final int col, final int row) {
 		super(col, row);
 	}
 

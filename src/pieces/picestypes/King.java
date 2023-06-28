@@ -7,7 +7,7 @@ import java.util.List;
 
 public class King extends Piece {
 
-	protected King(final int col, final int row) {
+	public King (final int col, final int row) {
 		super(col, row);
 	}
 

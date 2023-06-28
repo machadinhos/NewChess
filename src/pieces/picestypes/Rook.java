@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Rook extends Piece {
 
-	protected Rook(final int col, final int row) {
+	public Rook (final int col, final int row) {
 		super(col, row);
 	}
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Pawn extends Piece {
 
-	protected Pawn(final int col, final int row) {
+	public Pawn(final int col, final int row) {
 		super(col, row);
 	}
 
