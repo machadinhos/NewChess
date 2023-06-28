@@ -7,6 +7,10 @@ import java.util.List;
 
 public class Knight extends Piece {
 
+	protected Knight(final int col, final int row) {
+		super(col, row);
+	}
+
 	@Override
 	public void move() {
 

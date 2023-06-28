@@ -5,7 +5,11 @@ import pieces.Piece;
 import java.awt.*;
 import java.util.List;
 
-public class Tower extends Piece {
+public class Rook extends Piece {
+
+	protected Rook(final int col, final int row) {
+		super(col, row);
+	}
 
 	@Override
 	public void move() {

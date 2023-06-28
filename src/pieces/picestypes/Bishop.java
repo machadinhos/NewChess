@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Bishop extends Piece {
 
+
+	protected Bishop(final int col, final int row) {
+		super(col, row);
+	}
+
 	@Override
 	public void move() {
 		throw new UnsupportedOperationException();

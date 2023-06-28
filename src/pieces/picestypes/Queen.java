@@ -7,6 +7,10 @@ import java.util.List;
 
 public class Queen extends Piece {
 
+	protected Queen(final int col, final int row) {
+		super(col, row);
+	}
+
 	@Override
 	public void move() {
 

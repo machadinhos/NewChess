@@ -8,12 +8,10 @@ public abstract class Piece {
 	private final Point position;
 	
 	
-	public Piece (final int x, final int y) {
-		
-		this.position = new Point(x, y);
+	protected Piece (final int column, final int row) {
+		this.position = new Point(column, row);
 	}
-	
-	
+
 	public Point getPosition () {
 		return position;
 	}
@@ -22,11 +20,11 @@ public abstract class Piece {
 		this.position.setLocation(x, y);
 	}
 
-	public int getX() {
+	public int getCol() {
 		return (int) position.getX();
 	}
 
-	public int getY() {
+	public int getRow() {
 		return (int) position.getY();
 	}
 
