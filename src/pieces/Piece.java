@@ -16,6 +16,12 @@ public abstract class Piece {
 	}
 	
 	
+	public Team getTeam () {
+		
+		return team;
+	}
+	
+	
 	public Point getPosition () {
 		
 		return position;
