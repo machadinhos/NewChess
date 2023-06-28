@@ -4,11 +4,13 @@ import java.awt.*;
 import java.util.List;
 
 public abstract class Piece {
-
+	
+	private final Team team;
 	private final Point position;
 	
 	
-	protected Piece (final int column, final int row) {
+	protected Piece (final Team team, final int column, final int row) {
+		this.team = team;
 		this.position = new Point(column, row);
 	}
 
@@ -30,6 +32,6 @@ public abstract class Piece {
 
 	public abstract void move();
 	public abstract List<Point> getValidMoves();
-	public abstract boolean checkValidMove();
+	public abstract boolean checkValidMove(Point target, Piece[][] board);
 
 }

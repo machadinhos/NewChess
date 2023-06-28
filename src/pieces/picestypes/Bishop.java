@@ -1,6 +1,7 @@
 package pieces.picestypes;
 
 import pieces.Piece;
+import pieces.Team;
 
 import java.awt.*;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 public class Bishop extends Piece {
 
 
-	public Bishop (final int col, final int row) {
-		super(col, row);
+	public Bishop (final Team team, final int col, final int row) {
+		super(team, col, row);
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class Bishop extends Piece {
 	}
 
 	@Override
-	public boolean checkValidMove() {
+	public boolean checkValidMove(Point target, Piece[][] board) {
 		throw new UnsupportedOperationException();
 	}
 }

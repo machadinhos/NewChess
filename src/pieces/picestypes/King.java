@@ -1,14 +1,15 @@
 package pieces.picestypes;
 
 import pieces.Piece;
+import pieces.Team;
 
 import java.awt.*;
 import java.util.List;
 
 public class King extends Piece {
 
-	public King (final int col, final int row) {
-		super(col, row);
+	public King (final Team team, final int col, final int row) {
+		super(team, col, row);
 	}
 
 	@Override
@@ -22,7 +23,7 @@ public class King extends Piece {
 	}
 
 	@Override
-	public boolean checkValidMove() {
+	public boolean checkValidMove(Point target, Piece[][] board) {
 		return false;
 	}
 }
