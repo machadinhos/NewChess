@@ -7,7 +7,7 @@ import java.util.Objects;
 public class ImageFrame {
 	
 	private final JFrame frame;
-//	private final JLabel label;
+	//	private final JLabel label;
 	private final Image imageIcon;
 	
 	
@@ -22,24 +22,25 @@ public class ImageFrame {
 		
 		JLabel label = new JLabel(imageIcon1);
 		
-//		JPanel panel = new JPanel();
+		//		JPanel panel = new JPanel();
 		
 		JPanel panel = new JPanel() {
-
+			
 			@Override
 			protected void paintComponent (Graphics g) {
+				
 				super.paintComponent(g);
-
+				
 				g.drawImage(imageIcon, 0, 0, this);
 			}
-
+			
 		};
 		
 		
 		panel.setLayout(new GridLayout(0, 8));
 		
 		panel.add(label);
-
+		
 		panel.setPreferredSize(new Dimension(724, 724));
 		
 		frame.add(panel);
@@ -58,6 +59,7 @@ public class ImageFrame {
 			
 			@Override
 			public void run () {
+				
 				new ImageFrame();
 			}
 		});

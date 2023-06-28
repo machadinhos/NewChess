@@ -17,7 +17,7 @@ public class Game {
 	private static Point adversaryKingPosition;
 	
 	
-	public Game() {
+	public Game () {
 		
 		board = new Piece[8][8];
 		
@@ -34,7 +34,8 @@ public class Game {
 		adversaryKingPosition = blackKingPosition;
 	}
 	
-	public static void restartGame() {
+	
+	public static void restartGame () {
 		
 		board = new Piece[8][8];
 		
@@ -51,7 +52,8 @@ public class Game {
 		adversaryKingPosition = blackKingPosition;
 	}
 	
-	public static void changeTurn() {
+	
+	public static void changeTurn () {
 		
 		if (playingPieces == whitePieces) {
 			playingPieces = blackPieces;
@@ -67,4 +69,5 @@ public class Game {
 			adversaryKingPosition = blackKingPosition;
 		}
 	}
+	
 }

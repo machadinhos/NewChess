@@ -2,17 +2,16 @@ package pieces;
 
 import pieces.picestypes.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PieceInitializer {
 	
-	public static List<Piece> whiteTeamInitializer(final Piece[][] board) {
+	public static List<Piece> whiteTeamInitializer (final Piece[][] board) {
 		
 		List<Piece> whitePieces = new ArrayList<>();
 		
-		for (int col = 0; col <  8; col++) {
+		for (int col = 0; col < 8; col++) {
 			board[col][6] = new Pawn(Team.WHITE, col, 6);
 			whitePieces.add(board[col][6]);
 		}
@@ -41,11 +40,12 @@ public class PieceInitializer {
 		return whitePieces;
 	}
 	
-	public static List<Piece> blackTeamInitializer(final Piece[][] board) {
+	
+	public static List<Piece> blackTeamInitializer (final Piece[][] board) {
 		
 		List<Piece> blackPieces = new ArrayList<>();
 		
-		for (int col = 0; col <  8; col++) {
+		for (int col = 0; col < 8; col++) {
 			board[col][1] = new Pawn(Team.BLACK, col, 1);
 			blackPieces.add(board[col][1]);
 		}

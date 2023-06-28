@@ -16,9 +16,10 @@ public class PiecesUtils {
 		return true;
 	}
 	
-
+	
 	public static List<Point> getDiagonalUpRightMoves () {
 		
 		throw new UnsupportedOperationException();
 	}
+	
 }
