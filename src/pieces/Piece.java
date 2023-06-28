@@ -5,15 +5,21 @@ import java.util.List;
 
 public abstract class Piece {
 
-	private Point position;
-
-
-	public Point getPosition() {
+	private final Point position;
+	
+	
+	public Piece (final int x, final int y) {
+		
+		this.position = new Point(x, y);
+	}
+	
+	
+	public Point getPosition () {
 		return position;
 	}
-
-	public void setPosition(final Point position) {
-		this.position = position;
+	
+	public void setPosition(final int x, final int y) {
+		this.position.setLocation(x, y);
 	}
 
 	public int getX() {

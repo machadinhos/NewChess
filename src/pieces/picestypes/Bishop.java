@@ -9,16 +9,16 @@ public class Bishop extends Piece {
 
 	@Override
 	public void move() {
-
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public List<Point> getValidMoves() {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public boolean checkValidMove() {
-		return false;
+		throw new UnsupportedOperationException();
 	}
 }
