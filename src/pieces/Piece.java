@@ -49,7 +49,7 @@ public abstract class Piece {
 	}
 	
 	
-	public abstract List<Point> getValidMoves ();
+	public abstract List<Point> getValidMoves (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board);
 	
 	
 	public abstract boolean isMoveValid (final Point target, final Piece[][] board);

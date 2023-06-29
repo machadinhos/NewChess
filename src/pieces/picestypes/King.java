@@ -15,7 +15,7 @@ public class King extends Piece {
 	
 	
 	@Override
-	public List<Point> getValidMoves () {
+	public List<Point> getValidMoves (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		return null;
 	}
