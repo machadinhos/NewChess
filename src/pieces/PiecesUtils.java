@@ -56,6 +56,18 @@ public class PiecesUtils {
 	}
 	
 	
+	public static boolean isKingSafe (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		for (final Piece adversaryPiece : adversaryPieces) {
+			if (adversaryPiece.checkValidMove(kingPosition, board)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	
 	public static List<Point> getDiagonalUpLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -91,18 +103,6 @@ public class PiecesUtils {
 		}
 		
 		return moves;
-	}
-	
-	
-	public static boolean isKingSafe (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
-		
-		for (final Piece adversaryPiece : adversaryPieces) {
-			if (adversaryPiece.checkValidMove(kingPosition, board)) {
-				return false;
-			}
-		}
-		
-		return true;
 	}
 	
 	
