@@ -28,9 +28,12 @@ public abstract class Piece {
 	}
 	
 	
-	public void setPosition (final int x, final int y) {
+	public void move (final int col, final int row, final Piece[][] board, final List<Piece> adversaryPieces) {
 		
-		this.position.setLocation(x, y);
+		board[getCol()][getRow()] = null;
+		adversaryPieces.remove(board[col][row]);
+		board[col][row] = this;
+		this.position.setLocation(col, row);
 	}
 	
 	
@@ -44,9 +47,6 @@ public abstract class Piece {
 		
 		return (int) position.getY();
 	}
-	
-	
-	public abstract void move ();
 	
 	
 	public abstract List<Point> getValidMoves ();
