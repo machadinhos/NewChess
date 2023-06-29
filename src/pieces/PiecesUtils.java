@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PiecesUtils {
+public final class PiecesUtils {
 	
 	public static List<Point> getDiagonalUpRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
@@ -59,7 +59,7 @@ public class PiecesUtils {
 	public static boolean isKingSafe (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		for (final Piece adversaryPiece : adversaryPieces) {
-			if (adversaryPiece.checkValidMove(kingPosition, board)) {
+			if (adversaryPiece.isMoveValid(kingPosition, board)) {
 				return false;
 			}
 		}

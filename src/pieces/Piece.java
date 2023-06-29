@@ -52,6 +52,6 @@ public abstract class Piece {
 	public abstract List<Point> getValidMoves ();
 	
 	
-	public abstract boolean checkValidMove (Point target, Piece[][] board);
+	public abstract boolean isMoveValid (final Point target, final Piece[][] board);
 	
 }
