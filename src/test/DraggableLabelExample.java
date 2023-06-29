@@ -39,7 +39,6 @@ public class DraggableLabelExample {
 			public void mousePressed (MouseEvent e) {
 				// Get the initial position of the label
 				label.getParent().setComponentZOrder(label, 0); // Bring the label to the front
-				label.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 				label.setLocation(label.getX() + e.getX(), label.getY() + e.getY());
 			}
 			
@@ -57,6 +56,7 @@ public class DraggableLabelExample {
 				int x = label.getX() + e.getX();
 				int y = label.getY() + e.getY();
 				label.setLocation(x, y);
+				label.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 			}
 			
 			
@@ -80,7 +80,6 @@ public class DraggableLabelExample {
 			public void mousePressed (MouseEvent e) {
 				// Get the initial position of the label
 				label1.getParent().setComponentZOrder(label, 0); // Bring the label to the front
-				label1.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 				label1.setLocation(label.getX() + e.getX(), label.getY() + e.getY());
 			}
 			
@@ -100,6 +99,7 @@ public class DraggableLabelExample {
 				int x = label1.getX() + e.getX();
 				int y = label1.getY() + e.getY();
 				label1.setLocation(x, y);
+				label1.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 			}
 			
 			
