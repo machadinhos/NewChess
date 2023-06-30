@@ -1,6 +1,7 @@
 package pieces.picestypes;
 
 import pieces.Piece;
+import pieces.PiecesUtils;
 import pieces.Team;
 
 import java.awt.*;
@@ -18,7 +19,7 @@ public class Bishop extends Piece {
 	@Override
 	public List<Point> getValidMoves (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
-		throw new UnsupportedOperationException();
+		return PiecesUtils.getValidDiagonalMoves(this, kingPosition, adversaryPieces, board);
 	}
 	
 	

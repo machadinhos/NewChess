@@ -6,7 +6,20 @@ import java.util.List;
 
 public final class PiecesUtils {
 	
-	public static List<Point> getDiagonalUpRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+	public static List<Point> getValidDiagonalMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		moves.addAll(getDiagonalUpRightMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getDiagonalUpLeftMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getDiagonalDownRightMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getDiagonalDownLeftMoves(piece, kingPosition, adversaryPieces, board));
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getDiagonalUpRightMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
 		
@@ -15,27 +28,13 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
-		while (++col < 7 && --row > 0) {
-			if (board[col][row] == null) {
-				boardCopy = getCopyOfBoard(board);
-				
-				boardCopy[col][row] = piece;
-				boardCopy[piece.getCol()][piece.getRow()] = null;
-				
-				if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-					moves.add(new Point(col, row));
-				}
-			} else {
-				if (board[col][row].getTeam() != piece.getTeam()) {
-					boardCopy = getCopyOfBoard(board);
-					
-					boardCopy[col][row] = piece;
-					boardCopy[piece.getCol()][piece.getRow()] = null;
-					
-					if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-						moves.add(new Point(col, row));
-					}
-				}
+		while (++col <= 7 && --row > 0) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -44,7 +43,81 @@ public final class PiecesUtils {
 	}
 	
 	
-	public static Piece[][] getCopyOfBoard (Piece[][] board) {
+	private static List<Point> getDiagonalUpLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (--col > 0 && --row > 0) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getDiagonalDownRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (++col <= 7 && ++row <= 7) {
+			
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getDiagonalDownLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (--col > 0 && ++row <= 7) {
+			
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	public static Piece[][] getBoardCopy (Piece[][] board) {
 		
 		final Piece[][] boardCopy = new Piece[8][8];
 		
@@ -68,117 +141,39 @@ public final class PiecesUtils {
 	}
 	
 	
-	public static List<Point> getDiagonalUpLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
-		
-		final List<Point> moves = new ArrayList<>();
-		
-		int col = piece.getCol();
-		int row = piece.getRow();
+	private static MoveType isMoveValid (final Piece piece, final int col, final int row, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		Piece[][] boardCopy;
-		
-		while (--col > 0 && --row > 0) {
-			if (board[col][row] == null) {
-				boardCopy = getCopyOfBoard(board);
+		if (board[col][row] == null) {
+			boardCopy = getBoardCopy(board);
+			
+			boardCopy[col][row] = piece;
+			boardCopy[piece.getCol()][piece.getRow()] = null;
+			
+			if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
+				return MoveType.VALID;
+			}
+		} else {
+			if (board[col][row].getTeam() != piece.getTeam()) {
+				boardCopy = getBoardCopy(board);
 				
 				boardCopy[col][row] = piece;
 				boardCopy[piece.getCol()][piece.getRow()] = null;
 				
 				if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-					moves.add(new Point(col, row));
+					return MoveType.CAPTURE;
+				} else {
+					return MoveType.INVALID_CHECK;
 				}
-			} else {
-				if (board[col][row].getTeam() != piece.getTeam()) {
-					boardCopy = getCopyOfBoard(board);
-					
-					boardCopy[col][row] = piece;
-					boardCopy[piece.getCol()][piece.getRow()] = null;
-					
-					if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-						moves.add(new Point(col, row));
-					}
-				}
-				break;
 			}
 		}
 		
-		return moves;
+		return MoveType.INVALID;
 	}
 	
 	
-	public static List<Point> getDiagonalDownRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
-		
-		final List<Point> moves = new ArrayList<>();
-		
-		int col = piece.getCol();
-		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
-		
-		while (++col < 7 && ++row < 7) {
-			if (board[col][row] == null) {
-				boardCopy = getCopyOfBoard(board);
-				
-				boardCopy[col][row] = piece;
-				boardCopy[piece.getCol()][piece.getRow()] = null;
-				
-				if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-					moves.add(new Point(col, row));
-				}
-			} else {
-				if (board[col][row].getTeam() != piece.getTeam()) {
-					boardCopy = getCopyOfBoard(board);
-					
-					boardCopy[col][row] = piece;
-					boardCopy[piece.getCol()][piece.getRow()] = null;
-					
-					if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-						moves.add(new Point(col, row));
-					}
-				}
-				break;
-			}
-		}
-		
-		return moves;
-	}
-	
-	
-	public static List<Point> getDiagonalDownLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
-		
-		final List<Point> moves = new ArrayList<>();
-		
-		int col = piece.getCol();
-		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
-		
-		while (--col > 0 && ++row < 7) {
-			if (board[col][row] == null) {
-				boardCopy = getCopyOfBoard(board);
-				
-				boardCopy[col][row] = piece;
-				boardCopy[piece.getCol()][piece.getRow()] = null;
-				
-				if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-					moves.add(new Point(col, row));
-				}
-			} else {
-				if (board[col][row].getTeam() != piece.getTeam()) {
-					boardCopy = getCopyOfBoard(board);
-					
-					boardCopy[col][row] = piece;
-					boardCopy[piece.getCol()][piece.getRow()] = null;
-					
-					if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
-						moves.add(new Point(col, row));
-					}
-				}
-				break;
-			}
-		}
-		
-		return moves;
+	private enum MoveType {
+		VALID, CAPTURE, INVALID, INVALID_CHECK
 	}
 	
 }
