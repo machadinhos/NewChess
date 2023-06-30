@@ -19,6 +19,19 @@ public final class PiecesUtils {
 	}
 	
 	
+	public static List<Point> getValidCardinalMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		moves.addAll(getCardinalUpMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getCardinalDownMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getCardinalRightMoves(piece, kingPosition, adversaryPieces, board));
+		moves.addAll(getCardinalLeftMoves(piece, kingPosition, adversaryPieces, board));
+		
+		return moves;
+	}
+	
+	
 	private static List<Point> getDiagonalUpRightMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -169,6 +182,102 @@ public final class PiecesUtils {
 		}
 		
 		return MoveType.INVALID;
+	}
+	
+	
+	private static List<Point> getCardinalUpMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (--row > 0) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getCardinalDownMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (++row <= 7) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getCardinalRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (++col <= 7) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	private static List<Point> getCardinalLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		Piece[][] boardCopy;
+		
+		while (--col > 0) {
+			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+				moves.add(new Point(col, row));
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+				moves.add(new Point(col, row));
+				break;
+			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+				break;
+			}
+		}
+		
+		return moves;
 	}
 	
 	
