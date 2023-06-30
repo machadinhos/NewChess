@@ -65,13 +65,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (--col > 0 && --row > 0) {
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+			
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, board);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -89,14 +94,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (++col <= 7 && ++row <= 7) {
 			
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, board);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -114,14 +123,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (--col > 0 && ++row <= 7) {
 			
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, board);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -218,13 +231,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (++row <= 7) {
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+			
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -242,13 +260,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (++col <= 7) {
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+			
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
@@ -266,13 +289,18 @@ public final class PiecesUtils {
 		
 		Piece[][] boardCopy;
 		
+		MoveType moveType;
+		
 		while (--col > 0) {
-			if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
+			
+			moveType = isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar);
+			
+			if (moveType == MoveType.VALID) {
 				moves.add(new Point(col, row));
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.CAPTURE) {
+			} else if (moveType == MoveType.CAPTURE) {
 				moves.add(new Point(col, row));
 				break;
-			} else if (isMoveValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.INVALID) {
+			} else if (moveType == MoveType.INVALID) {
 				break;
 			}
 		}
