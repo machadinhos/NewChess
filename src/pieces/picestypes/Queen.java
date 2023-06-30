@@ -1,9 +1,11 @@
 package pieces.picestypes;
 
 import pieces.Piece;
+import pieces.PiecesUtils;
 import pieces.Team;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Queen extends Piece {
@@ -17,7 +19,12 @@ public class Queen extends Piece {
 	@Override
 	public List<Point> getValidMoves (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
-		return null;
+		List<Point> validMoves = new ArrayList<>();
+		
+		validMoves.addAll(PiecesUtils.getValidDiagonalMoves(this, kingPosition, adversaryPieces, board));
+		validMoves.addAll(PiecesUtils.getValidCardinalMoves(this, kingPosition, adversaryPieces, board));
+		
+		return validMoves;
 	}
 	
 	
