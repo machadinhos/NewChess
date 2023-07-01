@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Rook extends Piece {
 	
-	private boolean hasMoved;
+	private boolean hasNotMoved = true;
 	
 	
 	public Rook (final Team team, final int col, final int row) {
@@ -18,9 +18,9 @@ public class Rook extends Piece {
 	}
 	
 	
-	public boolean hasMoved () {
+	public boolean hasNotMoved () {
 		
-		return hasMoved;
+		return hasNotMoved;
 	}
 	
 	
@@ -28,7 +28,7 @@ public class Rook extends Piece {
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
 		super.move(col, row, board, adversaryPieces);
-		this.hasMoved = true;
+		this.hasNotMoved = false;
 	}
 	
 	

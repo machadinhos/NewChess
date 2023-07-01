@@ -10,7 +10,7 @@ import java.util.List;
 
 public class King extends Piece {
 	
-	private boolean hasMoved;
+	private boolean hasNotMoved = true;
 	
 	
 	public King (final Team team, final int col, final int row) {
@@ -23,7 +23,7 @@ public class King extends Piece {
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
 		super.move(col, row, board, adversaryPieces);
-		this.hasMoved = true;
+		this.hasNotMoved = false;
 	}
 	
 	
@@ -148,7 +148,7 @@ public class King extends Piece {
 			return validMoves;
 		}
 		
-		if (!hasMoved) {
+		if (hasNotMoved) {
 			
 			if (PiecesUtils.isCardinalMoveValid(this, super.getCol() + 2, super.getRow(), board)) {
 				
@@ -158,7 +158,7 @@ public class King extends Piece {
 				
 				if (PiecesUtils.isKingSafe(new Point(super.getCol() + 2, super.getRow()), adversaryPieces, boardCopy)) {
 					
-					if (board[super.getCol() + 3][super.getRow()] instanceof Rook && !((Rook) board[super.getCol() + 3][super.getRow()]).hasMoved()) {
+					if (board[super.getCol() + 3][super.getRow()] instanceof Rook && ((Rook) board[super.getCol() + 3][super.getRow()]).hasNotMoved()) {
 						
 						validMoves.add(new Point(super.getCol() + 2, super.getRow()));
 					}
@@ -172,7 +172,7 @@ public class King extends Piece {
 				
 				if (PiecesUtils.isKingSafe(new Point(super.getCol() - 2, super.getRow()), adversaryPieces, boardCopy)) {
 					
-					if (board[super.getCol() - 4][super.getRow()] instanceof Rook && !((Rook) board[super.getCol() - 4][super.getRow()]).hasMoved()) {
+					if (board[super.getCol() - 4][super.getRow()] instanceof Rook && ((Rook) board[super.getCol() - 4][super.getRow()]).hasNotMoved()) {
 						
 						if (board[super.getCol() - 3][super.getRow()] == null) {
 							
