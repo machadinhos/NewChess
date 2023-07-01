@@ -173,10 +173,4 @@ public class Pawn extends Piece {
 		return false;
 	}
 	
-	
-	public boolean hasNotMoved () {
-		
-		return hasNotMoved;
-	}
-	
 }
