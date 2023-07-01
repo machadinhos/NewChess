@@ -130,7 +130,12 @@ public class King extends Piece {
 	@Override
 	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
-		return false;
+		if (super.getCol() == col && super.getRow() == row) {
+			
+			return false;
+		}
+		
+		return Math.abs(super.getCol() - col) <= 1 && Math.abs(super.getRow() - row) <= 1;
 	}
 	
 	
