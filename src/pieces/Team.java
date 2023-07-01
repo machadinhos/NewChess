@@ -6,15 +6,26 @@ public enum Team {
 	
 	private boolean isEnPassantPossible = true;
 	
+	private boolean inEnPassantPlay = false;
 	
-	public boolean isEnPassantPossible () {
+	
+	public void setInEnPassantPlay () {
 		
-		return isEnPassantPossible;
+		if (this == Team.WHITE) {
+			
+			Team.BLACK.inEnPassantPlay = true;
+		} else {
+			
+			Team.WHITE.inEnPassantPlay = true;
+		}
 	}
 	
 	
-	public void doEnPassant () {
+	public void updateEnPassant () {
 		
-		this.isEnPassantPossible = false;
+		if (inEnPassantPlay) {
+			
+			this.isEnPassantPossible = false;
+		}
 	}
 }
