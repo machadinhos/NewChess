@@ -22,6 +22,17 @@ public class King extends Piece {
 	@Override
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
+		if (Math.abs(super.getCol() - col) == 2) {
+			
+			if (col == 2) {
+				
+				board[0][super.getRow()].move(3, super.getRow(), board, adversaryPieces);
+			} else if (col == 6) {
+				
+				board[7][super.getRow()].move(5, super.getRow(), board, adversaryPieces);
+			}
+		}
+		
 		super.move(col, row, board, adversaryPieces);
 		this.hasNotMoved = false;
 	}
