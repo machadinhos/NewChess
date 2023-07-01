@@ -1,6 +1,7 @@
 package pieces.picestypes;
 
 import pieces.Piece;
+import pieces.PiecesUtils;
 import pieces.Team;
 
 import java.awt.*;
@@ -18,12 +19,6 @@ public class Pawn extends Piece {
 	}
 	
 	
-	public boolean hasNotMoved () {
-		
-		return hasNotMoved;
-	}
-	
-	
 	@Override
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
@@ -37,50 +32,105 @@ public class Pawn extends Piece {
 		
 		List<Point> validMoves = new ArrayList<>();
 		
+		int col;
+		int row;
+		
 		if (super.getTeam() == Team.WHITE) {
 			
-			if (super.getRow() - 1 >= 0 && board[super.getCol()][super.getRow() - 1] == null) {
+			col = super.getCol();
+			row = super.getRow() - 1;
+			
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol(), super.getRow() - 1));
+				validMoves.add(new Point(col, row));
+				
+				if (hasNotMoved && checkMove(col, row - 1, kingPosition, adversaryPieces, board)) {
+					
+					validMoves.add(new Point(col, row - 1));
+				}
 			}
 			
-			if (super.getRow() - 2 >= 0 && board[super.getCol()][super.getRow() - 2] == null && board[super.getCol()][super.getRow() - 1] == null && this.hasNotMoved()) {
+			col = super.getCol() - 1;
+			
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol(), super.getRow() - 2));
+				validMoves.add(new Point(col, row));
 			}
 			
-			if (super.getRow() - 1 >= 0 && super.getCol() - 1 >= 0 && board[super.getCol() - 1][super.getRow() - 1] != null && board[super.getCol() - 1][super.getRow() - 1].getTeam() != super.getTeam()) {
-				
-				validMoves.add(new Point(super.getCol() - 1, super.getRow() - 1));
-			}
+			col = super.getCol() + 1;
 			
-			if (super.getRow() - 1 >= 0 && super.getCol() + 1 <= 7 && board[super.getCol() + 1][super.getRow() - 1] != null && board[super.getCol() + 1][super.getRow() - 1].getTeam() != super.getTeam()) {
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol() + 1, super.getRow() - 1));
+				validMoves.add(new Point(col, row));
 			}
 		} else {
 			
-			if (super.getRow() + 1 <= 7 && board[super.getCol()][super.getRow() + 1] == null) {
+			col = super.getCol();
+			row = super.getRow() + 1;
+			
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol(), super.getRow() + 1));
+				validMoves.add(new Point(col, row));
+				
+				if (hasNotMoved && checkMove(col, row + 1, kingPosition, adversaryPieces, board)) {
+					
+					validMoves.add(new Point(col, row - 1));
+				}
 			}
 			
-			if (super.getRow() + 2 <= 7 && board[super.getCol()][super.getRow() + 2] == null && board[super.getCol()][super.getRow() + 1] == null && this.hasNotMoved()) {
+			col = super.getCol() - 1;
+			
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol(), super.getRow() + 2));
+				validMoves.add(new Point(col, row));
 			}
 			
-			if (super.getRow() + 1 <= 7 && super.getCol() - 1 >= 0 && board[super.getCol() - 1][super.getRow() + 1] != null && board[super.getCol() - 1][super.getRow() + 1].getTeam() != super.getTeam()) {
+			col = super.getCol() + 1;
+			
+			if (checkMove(col, row, kingPosition, adversaryPieces, board)) {
 				
-				validMoves.add(new Point(super.getCol() - 1, super.getRow() + 1));
+				validMoves.add(new Point(col, row));
 			}
 		}
 		
 		if (super.getTeam().isInEnPassantPlay()) {
+			
 			validMoves.add(super.getTeam().getEnPassantPoint());
 		}
 		
 		return validMoves;
+	}
+	
+	
+	private boolean checkMove (final int col, final int row, final Point kingPosition, List<Piece> adversaryPieces, final Piece[][] board) {
+		
+		
+		if (row >= 0 && row <= 7 && col >= 0 && col <= 7) {
+			
+			if (col == super.getCol() && board[row][col] != null) {
+				
+				return false;
+			} else if (board[row][col] == null || board[row][col].getTeam() == super.getTeam()) {
+				
+				return false;
+			}
+			
+			Piece[][] boardCopy = PiecesUtils.getBoardCopy(board);
+			
+			boardCopy[super.getRow()][super.getCol()] = null;
+			boardCopy[row][col] = this;
+			
+			if (adversaryPieces.contains(boardCopy[row][col])) {
+				
+				adversaryPieces = new ArrayList<>(adversaryPieces);
+				
+				adversaryPieces.remove(boardCopy[row][col]);
+			}
+			
+			return PiecesUtils.isKingSafe(kingPosition, adversaryPieces, boardCopy);
+		}
+		
+		return false;
 	}
 	
 	
@@ -121,6 +171,12 @@ public class Pawn extends Piece {
 		}
 		
 		return false;
+	}
+	
+	
+	public boolean hasNotMoved () {
+		
+		return hasNotMoved;
 	}
 	
 }

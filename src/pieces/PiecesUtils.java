@@ -75,15 +75,16 @@ public final class PiecesUtils {
 		int col = piece.getCol();
 		int row = piece.getRow();
 		
-		Piece[][] boardCopy;
-		
 		while (++col <= 7 && --row > 0) {
 			if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				
 				moves.add(new Point(col, row));
 			} else if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				
 				moves.add(new Point(col, row));
 				break;
 			} else if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+				
 				break;
 			}
 		}
@@ -105,7 +106,7 @@ public final class PiecesUtils {
 	 *
 	 * @return The move type.
 	 */
-	private static MoveType isPositionValid (final Piece piece, final int col, final int row, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
+	private static MoveType isPositionValid (final Piece piece, final int col, final int row, final Point kingPosition, List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		Piece[][] boardCopy;
 		if (board[col][row] == null) {
@@ -113,6 +114,13 @@ public final class PiecesUtils {
 			
 			boardCopy[col][row] = piece;
 			boardCopy[piece.getCol()][piece.getRow()] = null;
+			
+			if (adversaryPieces.contains(board[col][row])) {
+				
+				adversaryPieces = new ArrayList<>(adversaryPieces);
+				
+				adversaryPieces.remove(board[col][row]);
+			}
 			
 			if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
 				return MoveType.VALID;
@@ -123,6 +131,13 @@ public final class PiecesUtils {
 				
 				boardCopy[col][row] = piece;
 				boardCopy[piece.getCol()][piece.getRow()] = null;
+				
+				if (adversaryPieces.contains(board[col][row])) {
+					
+					adversaryPieces = new ArrayList<>(adversaryPieces);
+					
+					adversaryPieces.remove(board[col][row]);
+				}
 				
 				if (isKingSafe(kingPosition, adversaryPieces, boardCopy)) {
 					return MoveType.CAPTURE;
@@ -153,8 +168,6 @@ public final class PiecesUtils {
 		
 		int col = piece.getCol();
 		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
 		
 		MoveType moveType;
 		
@@ -193,8 +206,6 @@ public final class PiecesUtils {
 		
 		int col = piece.getCol();
 		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
 		
 		MoveType moveType;
 		
@@ -235,6 +246,15 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Check if the king is safe.
+	 *
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return True if the king is safe, false otherwise.
+	 */
 	public static boolean isKingSafe (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		for (final Piece adversaryPiece : adversaryPieces) {
@@ -264,8 +284,6 @@ public final class PiecesUtils {
 		
 		int col = piece.getCol();
 		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
 		
 		MoveType moveType;
 		
@@ -305,8 +323,6 @@ public final class PiecesUtils {
 		int col = piece.getCol();
 		int row = piece.getRow();
 		
-		Piece[][] boardCopy;
-		
 		while (--row > 0) {
 			if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, boar) == MoveType.VALID) {
 				moves.add(new Point(col, row));
@@ -339,8 +355,6 @@ public final class PiecesUtils {
 		
 		int col = piece.getCol();
 		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
 		
 		MoveType moveType;
 		
@@ -380,8 +394,6 @@ public final class PiecesUtils {
 		int col = piece.getCol();
 		int row = piece.getRow();
 		
-		Piece[][] boardCopy;
-		
 		MoveType moveType;
 		
 		while (++col <= 7) {
@@ -419,8 +431,6 @@ public final class PiecesUtils {
 		
 		int col = piece.getCol();
 		int row = piece.getRow();
-		
-		Piece[][] boardCopy;
 		
 		MoveType moveType;
 		
