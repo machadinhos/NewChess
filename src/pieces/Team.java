@@ -1,5 +1,7 @@
 package pieces;
 
+import java.awt.*;
+
 public enum Team {
 	
 	WHITE, BLACK;
@@ -8,16 +10,44 @@ public enum Team {
 	
 	private boolean inEnPassantPlay = false;
 	
+	private Point enPassantPoint;
 	
-	public void setInEnPassantPlay () {
+	
+	public boolean isEnPassantPossible () {
+		
+		if (this == Team.WHITE) {
+			
+			return Team.BLACK.isEnPassantPossible;
+		} else {
+			
+			return Team.WHITE.isEnPassantPossible;
+		}
+	}
+	
+	
+	public boolean isInEnPassantPlay () {
+		
+		return inEnPassantPlay;
+	}
+	
+	
+	public void setInEnPassantPlay (Point enPassantPoint) {
 		
 		if (this == Team.WHITE) {
 			
 			Team.BLACK.inEnPassantPlay = true;
+			Team.BLACK.enPassantPoint = enPassantPoint;
 		} else {
 			
 			Team.WHITE.inEnPassantPlay = true;
+			Team.WHITE.enPassantPoint = enPassantPoint;
 		}
+	}
+	
+	
+	public Point getEnPassantPoint () {
+		
+		return enPassantPoint;
 	}
 	
 	
@@ -26,6 +56,8 @@ public enum Team {
 		if (inEnPassantPlay) {
 			
 			this.isEnPassantPossible = false;
+			this.inEnPassantPlay = false;
+			this.enPassantPoint = null;
 		}
 	}
 }

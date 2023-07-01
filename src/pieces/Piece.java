@@ -45,6 +45,7 @@ public abstract class Piece {
 		adversaryPieces.remove(board[col][row]);
 		board[col][row] = this;
 		this.position.setLocation(col, row);
+		this.team.updateEnPassant();
 	}
 	
 	
