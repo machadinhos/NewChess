@@ -4,8 +4,22 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class for pieces.
+ */
 public final class PiecesUtils {
 	
+	/**
+	 * Get the list of all the valid diagonal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of valid diagonal moves.
+	 */
 	public static List<Point> getValidDiagonalMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -19,6 +33,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the valid cardinal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of valid cardinal moves.
+	 */
 	public static List<Point> getValidCardinalMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -32,6 +57,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the up right diagonal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of up right diagonal moves.
+	 */
 	private static List<Point> getDiagonalUpRightMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -56,6 +92,19 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the type of move for a piece at a given position.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param col             The column.
+	 * @param row             The row.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The move type.
+	 */
 	private static MoveType isPositionValid (final Piece piece, final int col, final int row, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		Piece[][] boardCopy;
@@ -87,6 +136,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the left right diagonal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of up left diagonal moves.
+	 */
 	private static List<Point> getDiagonalUpLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -116,6 +176,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the down right diagonal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of down right diagonal moves.
+	 */
 	private static List<Point> getDiagonalDownRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -145,6 +216,13 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get a copy of the board.
+	 *
+	 * @param board The board.
+	 *
+	 * @return The copy of the board.
+	 */
 	public static Piece[][] getBoardCopy (Piece[][] board) {
 		
 		final Piece[][] boardCopy = new Piece[8][8];
@@ -169,6 +247,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the down left diagonal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param board           The board.
+	 *
+	 * @return The list of down left diagonal moves.
+	 */
 	private static List<Point> getDiagonalDownLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -198,6 +287,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the up cardinal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param boar            The board.
+	 *
+	 * @return The list of up cardinal moves.
+	 */
 	private static List<Point> getCardinalUpMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -222,6 +322,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the down cardinal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param boar            The board.
+	 *
+	 * @return The list of down cardinal moves.
+	 */
 	private static List<Point> getCardinalDownMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -251,6 +362,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the right cardinal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param boar            The board.
+	 *
+	 * @return The list of right cardinal moves.
+	 */
 	private static List<Point> getCardinalRightMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -280,6 +402,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Get the list of all the left cardinal moves for a piece.
+	 * Takes into account the check state of the king.
+	 *
+	 * @param piece           The piece.
+	 * @param kingPosition    The king position.
+	 * @param adversaryPieces The pieces of the adversary.
+	 * @param boar            The board.
+	 *
+	 * @return The list of left cardinal moves.
+	 */
 	private static List<Point> getCardinalLeftMoves (Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] boar) {
 		
 		final List<Point> moves = new ArrayList<>();
@@ -309,6 +442,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Check if a diagonal move is valid.
+	 * Does not take into account the check state of the king.
+	 *
+	 * @param piece The piece.
+	 * @param col   The column.
+	 * @param row   The row.
+	 * @param board The board.
+	 *
+	 * @return True if the diagonal move is valid, false otherwise.
+	 */
 	public static boolean isDiagonalValid (final Piece piece, final int col, final int row, final Piece[][] board) {
 		
 		if (Math.abs(piece.getCol() - col) == Math.abs(piece.getRow() - row)) {
@@ -335,6 +479,17 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * Check if a cardinal move is valid.
+	 * Does not take into account the check state of the king.
+	 *
+	 * @param piece The piece.
+	 * @param col   The column.
+	 * @param row   The row.
+	 * @param board The board.
+	 *
+	 * @return True if the cardinal move is valid, false otherwise.
+	 */
 	public static boolean isCardinalValid (final Piece piece, final int col, final int row, final Piece[][] board) {
 		
 		if (piece.getCol() == col) {
@@ -375,6 +530,9 @@ public final class PiecesUtils {
 	}
 	
 	
+	/**
+	 * The type of move.
+	 */
 	private enum MoveType {
 		VALID, CAPTURE, INVALID, INVALID_CHECK
 	}
