@@ -160,7 +160,7 @@ public final class PiecesUtils {
 	public static boolean isKingSafe (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board) {
 		
 		for (final Piece adversaryPiece : adversaryPieces) {
-			if (adversaryPiece.isMoveValid(kingPosition, board)) {
+			if (adversaryPiece.isMoveValid((int) kingPosition.getX(), (int) kingPosition.getY(), board)) {
 				return false;
 			}
 		}

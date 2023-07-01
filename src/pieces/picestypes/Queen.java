@@ -29,9 +29,9 @@ public class Queen extends Piece {
 	
 	
 	@Override
-	public boolean isMoveValid (final Point target, final Piece[][] board) {
+	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
-		return false;
+		return PiecesUtils.isDiagonalValid(this, col, row, board) || PiecesUtils.isCardinalValid(this, col, row, board);
 	}
 	
 }

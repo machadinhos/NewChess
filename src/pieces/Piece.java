@@ -9,10 +9,10 @@ public abstract class Piece {
 	private final Point position;
 	
 	
-	protected Piece (final Team team, final int column, final int row) {
+	protected Piece (final Team team, final int col, final int row) {
 		
 		this.team = team;
-		this.position = new Point(column, row);
+		this.position = new Point(col, row);
 	}
 	
 	
@@ -52,6 +52,6 @@ public abstract class Piece {
 	public abstract List<Point> getValidMoves (final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board);
 	
 	
-	public abstract boolean isMoveValid (final Point target, final Piece[][] board);
+	public abstract boolean isMoveValid (final int col, final int row, final Piece[][] board);
 	
 }

@@ -24,9 +24,9 @@ public class Bishop extends Piece {
 	
 	
 	@Override
-	public boolean isMoveValid (final Point target, final Piece[][] board) {
+	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
-		throw new UnsupportedOperationException();
+		return PiecesUtils.isDiagonalValid(this, col, row, board);
 	}
 	
 }

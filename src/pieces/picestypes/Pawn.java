@@ -22,7 +22,7 @@ public class Pawn extends Piece {
 	
 	
 	@Override
-	public boolean isMoveValid (final Point target, final Piece[][] board) {
+	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
 		return false;
 	}

@@ -34,9 +34,9 @@ public class Rook extends Piece {
 	
 	
 	@Override
-	public boolean isMoveValid (final Point target, final Piece[][] board) {
+	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
-		return false;
+		return PiecesUtils.isCardinalValid(this, col, row, board);
 	}
 	
 }
