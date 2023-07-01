@@ -453,7 +453,7 @@ public final class PiecesUtils {
 	 *
 	 * @return True if the diagonal move is valid, false otherwise.
 	 */
-	public static boolean isDiagonalValid (final Piece piece, final int col, final int row, final Piece[][] board) {
+	public static boolean isDiagonalMoveValid (final Piece piece, final int col, final int row, final Piece[][] board) {
 		
 		if (Math.abs(piece.getCol() - col) == Math.abs(piece.getRow() - row)) {
 			
@@ -490,7 +490,7 @@ public final class PiecesUtils {
 	 *
 	 * @return True if the cardinal move is valid, false otherwise.
 	 */
-	public static boolean isCardinalValid (final Piece piece, final int col, final int row, final Piece[][] board) {
+	public static boolean isCardinalMoveValid (final Piece piece, final int col, final int row, final Piece[][] board) {
 		
 		if (piece.getCol() == col) {
 			if (piece.getRow() > row) {

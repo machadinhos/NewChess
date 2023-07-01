@@ -26,7 +26,7 @@ public class Bishop extends Piece {
 	@Override
 	public boolean isMoveValid (final int col, final int row, final Piece[][] board) {
 		
-		return PiecesUtils.isDiagonalValid(this, col, row, board);
+		return PiecesUtils.isDiagonalMoveValid(this, col, row, board);
 	}
 	
 }
