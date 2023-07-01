@@ -18,6 +18,12 @@ public class Rook extends Piece {
 	}
 	
 	
+	public boolean hasMoved () {
+		
+		return hasMoved;
+	}
+	
+	
 	@Override
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
