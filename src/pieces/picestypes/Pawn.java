@@ -95,7 +95,10 @@ public class Pawn extends Piece {
 		
 		if (super.getTeam().isInEnPassantPlay()) {
 			
-			validMoves.add(super.getTeam().getEnPassantPoint());
+			if (Math.abs(super.getCol() - super.getTeam().getEnPassantPoint().x) == 1 && Math.abs(super.getRow() - super.getTeam().getEnPassantPoint().y) == 1) {
+				
+				validMoves.add(super.getTeam().getEnPassantPoint());
+			}
 		}
 		
 		return validMoves;
