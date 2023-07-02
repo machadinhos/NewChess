@@ -22,7 +22,7 @@ public class Pawn extends Piece {
 	@Override
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
-		if (this.hasNotMoved) {
+		if (this.hasNotMoved && Math.abs(row - super.getRow()) == 2) {
 			
 			if (super.getTeam().isEnPassantPossible()) {
 				
