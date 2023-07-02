@@ -22,8 +22,37 @@ public class Pawn extends Piece {
 	@Override
 	public void move (int col, int row, Piece[][] board, List<Piece> adversaryPieces) {
 		
+		
+		if (this.hasNotMoved) {
+			
+			if (super.getTeam().isEnPassantPossible()) {
+				
+				if (checkEnPassent(col + 1, row, board)) {
+					
+					if (super.getTeam() == Team.WHITE) {
+						
+						super.getTeam().setInEnPassantPlay(new Point(col, row + 1));
+					} else {
+						
+						super.getTeam().setInEnPassantPlay(new Point(col, row - 1));
+					}
+				} else if (checkEnPassent(col - 1, row, board)) {
+					
+					if (super.getTeam() == Team.WHITE) {
+						
+						super.getTeam().setInEnPassantPlay(new Point(col, row + 1));
+					} else {
+						
+						super.getTeam().setInEnPassantPlay(new Point(col, row - 1));
+					}
+				}
+			}
+		}
+		
+		
 		super.move(col, row, board, adversaryPieces);
 		this.hasNotMoved = false;
+		
 	}
 	
 	
@@ -171,6 +200,17 @@ public class Pawn extends Piece {
 		if (valid) {
 			
 			return board[col][row] == null || board[col][row].getTeam() != super.getTeam();
+		}
+		
+		return false;
+	}
+	
+	
+	private boolean checkEnPassent (final int col, final int row, final Piece[][] board) {
+		
+		if (col >= 0 && col <= 7) {
+			
+			return board[col][row] != null && board[col][row].getTeam() != super.getTeam() && board[col][row] instanceof Pawn;
 		}
 		
 		return false;
