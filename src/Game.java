@@ -1,5 +1,6 @@
 import pieces.Piece;
 import pieces.PieceInitializer;
+import pieces.Team;
 
 import java.awt.*;
 import java.util.List;
@@ -50,6 +51,8 @@ public class Game {
 		
 		playingKingPosition = whiteKingPosition;
 		adversaryKingPosition = blackKingPosition;
+		
+		Team.reset();
 	}
 	
 	

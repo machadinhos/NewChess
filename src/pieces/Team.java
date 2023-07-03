@@ -13,6 +13,18 @@ public enum Team {
 	private Point enPassantPoint;
 	
 	
+	public static void reset () {
+		
+		Team.WHITE.isEnPassantPossible = true;
+		Team.WHITE.inEnPassantPlay = false;
+		Team.WHITE.enPassantPoint = null;
+		
+		Team.BLACK.isEnPassantPossible = true;
+		Team.BLACK.inEnPassantPlay = false;
+		Team.BLACK.enPassantPoint = null;
+	}
+	
+	
 	public boolean isEnPassantPossible () {
 		
 		if (this == Team.WHITE) {
