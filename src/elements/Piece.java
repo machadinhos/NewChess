@@ -1,4 +1,4 @@
-package pieces;
+package elements;
 
 import java.awt.*;
 import java.util.List;
@@ -6,28 +6,21 @@ import java.util.List;
 /**
  * Represents a piece.
  */
-public abstract class Piece {
+public abstract class Piece extends GameElement {
 	
 	private final Team team;
-	private final Point position;
-	
+
 	
 	protected Piece (final Team team, final int col, final int row) {
-		
+		super(col,row);
 		this.team = team;
-		this.position = new Point(col, row);
+
 	}
 	
 	
 	public Team getTeam () {
 		
 		return team;
-	}
-	
-	
-	public Point getPosition () {
-		
-		return position;
 	}
 	
 	
@@ -44,20 +37,20 @@ public abstract class Piece {
 		board[getCol()][getRow()] = null;
 		adversaryPieces.remove(board[col][row]);
 		board[col][row] = this;
-		this.position.setLocation(col, row);
+		this.getPosition().setLocation(col, row);
 		this.team.updateEnPassant();
 	}
 	
 	
 	public int getCol () {
 		
-		return (int) position.getX();
+		return (int) getPosition().getX();
 	}
 	
 	
 	public int getRow () {
 		
-		return (int) position.getY();
+		return (int) getPosition().getY();
 	}
 	
 	
@@ -84,5 +77,7 @@ public abstract class Piece {
 	 * @return True if the move is valid, false otherwise.
 	 */
 	public abstract boolean isMoveValid (final int col, final int row, final Piece[][] board);
-	
+
+
+
 }

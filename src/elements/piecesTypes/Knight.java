@@ -1,10 +1,12 @@
-package pieces.picestypes;
+package elements.piecesTypes;
 
-import pieces.Piece;
-import pieces.Team;
+import elements.Piece;
+import elements.Team;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 public class Knight extends Piece {
 	
@@ -41,5 +43,10 @@ public class Knight extends Piece {
 		
 		return false;
 	}
-	
+
+	@Override
+	public Image getImage() {
+		String equipa = this.getTeam().name().substring(0,1).toLowerCase();
+		return new ImageIcon(Objects.requireNonNull(getClass().getResource(equipa + "N.png"))).getImage();
+	}
 }

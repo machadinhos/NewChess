@@ -75,8 +75,8 @@ public class DraggableSquare extends JFrame {
 			public void mouseReleased (MouseEvent e) {
 				
 				isDragging = false;
-				squareX = initialX;
-				squareY = initialY;
+				//squareX = initialX; // isto buga mas vai ser necessário arredondar à casa mais proxima
+				//squareY = initialY;
 				
 				// Check if the mouse is within the square and set the cursor accordingly
 				if (mouseX >= squareX && mouseX < squareX + 50 && mouseY >= squareY && mouseY < squareY + 50) {

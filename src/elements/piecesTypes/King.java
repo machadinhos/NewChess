@@ -1,12 +1,14 @@
-package pieces.picestypes;
+package elements.piecesTypes;
 
-import pieces.Piece;
-import pieces.PiecesUtils;
-import pieces.Team;
+import elements.Piece;
+import elements.PiecesUtils;
+import elements.Team;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class King extends Piece {
 	
@@ -181,21 +183,26 @@ public class King extends Piece {
 				boardCopy[super.getCol() - 2][super.getRow()] = this;
 				boardCopy[super.getCol()][super.getRow()] = null;
 				
-				if (PiecesUtils.isKingSafe(new Point(super.getCol() - 2, super.getRow()), adversaryPieces, boardCopy)) {
-					
-					if (board[super.getCol() - 4][super.getRow()] instanceof Rook && ((Rook) board[super.getCol() - 4][super.getRow()]).hasNotMoved()) {
-						
-						if (board[super.getCol() - 3][super.getRow()] == null) {
+				if (PiecesUtils.isKingSafe(new Point(super.getCol() - 2, super.getRow()), adversaryPieces, boardCopy)
+						&& (board[super.getCol() - 4][super.getRow()] instanceof Rook
+						&& ((Rook) board[super.getCol() - 4][super.getRow()]).hasNotMoved()
+						&& (board[super.getCol() - 3][super.getRow()] == null))) {
 							
 							validMoves.add(new Point(super.getCol() - 2, super.getRow()));
-						}
+
 						
-					}
+
 				}
 			}
 		}
 		
 		return validMoves;
 	}
-	
+
+	@Override
+	public Image getImage() {
+		String equipa = this.getTeam().name().substring(0,1).toLowerCase();
+		return new ImageIcon(Objects.requireNonNull(getClass().getResource(equipa + "K.png"))).getImage();
+	}
+
 }

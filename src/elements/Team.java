@@ -1,4 +1,4 @@
-package pieces;
+package elements;
 
 import java.awt.*;
 

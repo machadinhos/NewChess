@@ -1,12 +1,14 @@
-package pieces.picestypes;
+package elements.piecesTypes;
 
-import pieces.Piece;
-import pieces.PiecesUtils;
-import pieces.Team;
+import elements.Piece;
+import elements.PiecesUtils;
+import elements.Team;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Queen extends Piece {
 	
@@ -33,5 +35,10 @@ public class Queen extends Piece {
 		
 		return PiecesUtils.isDiagonalMoveValid(this, col, row, board) || PiecesUtils.isCardinalMoveValid(this, col, row, board);
 	}
-	
+
+	@Override
+	public Image getImage() {
+		String equipa = this.getTeam().name().substring(0,1).toLowerCase();
+		return new ImageIcon(Objects.requireNonNull(getClass().getResource(equipa + "Q.png"))).getImage();
+	}
 }
