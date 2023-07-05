@@ -93,6 +93,32 @@ public final class PiecesUtils {
 	}
 	
 	
+	private static List<Point> getValidMoves (final Piece piece, final Point kingPosition, final List<Piece> adversaryPieces, final Piece[][] board, final Direction direction) {
+		
+		final List<Point> moves = new ArrayList<>();
+		
+		int col = piece.getCol();
+		int row = piece.getRow();
+		
+		while ((col = direction.updateCol(col)) <= 7 && (row = direction.updateRow(row)) > 0) {
+			if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.VALID) {
+				
+				moves.add(new Point(col, row));
+			} else if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.CAPTURE) {
+				
+				moves.add(new Point(col, row));
+				break;
+			} else if (isPositionValid(piece, col, row, kingPosition, adversaryPieces, board) == MoveType.INVALID) {
+				
+				break;
+			}
+		}
+		
+		return moves;
+	}
+	
+	
+	
 	/**
 	 * Get the type of move for a piece at a given position.
 	 * Takes into account the check state of the king.
@@ -545,6 +571,34 @@ public final class PiecesUtils {
 	 */
 	private enum MoveType {
 		VALID, CAPTURE, INVALID, INVALID_CHECK
+	}
+	
+	
+	private enum Direction {
+		UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0), UP_LEFT(-1, -1), UP_RIGHT(1, -1), DOWN_LEFT(-1, 1), DOWN_RIGHT(1, 1);
+		
+		private final int colDirection;
+		private final int rowDirection;
+		
+		
+		Direction (int colDirection, int rowDirection) {
+			
+			this.colDirection = colDirection;
+			this.rowDirection = rowDirection;
+		}
+		
+		
+		public int updateCol (int col) {
+			
+			return col + colDirection;
+		}
+		
+		
+		public int updateRow (int row) {
+			
+			return row + rowDirection;
+		}
+		
 	}
 	
 }
