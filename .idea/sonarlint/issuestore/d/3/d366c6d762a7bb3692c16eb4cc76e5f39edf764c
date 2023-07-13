@@ -1,0 +1,11 @@
+
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ùÕª–
+d
+java:S3252"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öþÿÿÿÿ
+]	java:S125O"<This block of commented-out lines of code should be removed.(Þ™ªøýÿÿÿÿ8¥Ëñ‚’1
+N
+java:S1068
+",Remove this unused "initialX" private field.(¸ãÆÀûÿÿÿÿ8†ýï‚’1
+N
+java:S1068",Remove this unused "initialY" private field.(Ì¿âÉþÿÿÿÿ8†ýï‚’1

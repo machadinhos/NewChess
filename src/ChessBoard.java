@@ -6,50 +6,79 @@ import java.beans.PropertyChangeListener;
 import javax.swing.*;
 
 
-public class ChessBoard extends Canvas implements PropertyChangeListener {
+public class ChessBoard implements PropertyChangeListener {
 
-	private final Container pieceLayer;
+	private final JFrame frame;
+	private final JPanel backgroundPanel;
+	private final JPanel piecesPanel;
+	private final JLayeredPane layers;
 	private GameElement[][] board;
-	private final JFrame backgroundFrame;
 
 	//private final Image background; //preciso se usarmos a imagem do board em vez de desenhar
 
-	private final int RECTSIZE = 50; //em pixeis
+	private static final int RECTSIZE = 70; //em pixeis
 	public ChessBoard() {
+		this.frame = new JFrame();
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setSize(new Dimension(RECTSIZE*10, RECTSIZE*10));
+		frame.setLayout(new FlowLayout());
+		frame.setTitle("Chess Board");
+		frame.setVisible(true);
 
-		JLayeredPane layers = new JLayeredPane();
-		backgroundFrame = new JFrame("ChessBoard");
-		backgroundFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		layers.add(backgroundFrame);
+		this.layers = new JLayeredPane();
+		layers.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		frame.setContentPane(layers);
 
-		pieceLayer = new Container();
-		layers.add(pieceLayer);
 
-		//background = new ImageIcon(Objects.requireNonNull(getClass().getResource("board.png"))).getImage();
+		this.backgroundPanel = new JPanel();
+		backgroundPanel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		backgroundPanel.setLayout(new GridLayout(8, 8));
+		backgroundPanel.setVisible(true);
+		backgroundPanel.setOpaque(false);
+		drawBoard();
+		layers.add(backgroundPanel, 1);
+
+		this.piecesPanel = new JPanel();
+		//piecesPanel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+		piecesPanel.setLayout(new FlowLayout());
+		piecesPanel.setVisible(true);
+		piecesPanel.setOpaque(false);
+
+
 		Game game = new Game();
 		game.addObserver(this);
 		board = game.getBoard();
-
-		drawBoard();
 		updateBoard();
+		layers.add(piecesPanel, 2);
+
+
+
 	}
 
 
 	private void drawBoard() {
 		boolean isBlack = true;
 
-		for (int i = 0; i < 64; i++) {
-			JPanel square = new JPanel(new BorderLayout());
+		for (int i = 0; i < 8; i++) {
+			isBlack = !isBlack;
+			for (int j = 0; j < 8; j++) {
+				JPanel square = new JPanel();
+				square.setOpaque(true);
 
-			if (isBlack) {
-				square.setBackground(Color.BLACK);
-			} else {
-				square.setBackground(Color.WHITE);
+				if (isBlack) {
+					square.setBackground(Color.BLACK);
+				} else {
+					square.setBackground(Color.WHITE);
+				}
+
+				square.setBounds((i) * RECTSIZE, (j) * RECTSIZE, RECTSIZE, RECTSIZE);
+
+				backgroundPanel.add(square);
+
+				isBlack = !isBlack;
 			}
 
-			backgroundFrame.add(square);
-			isBlack = !isBlack;
 		}
 	}
 
@@ -66,6 +95,8 @@ public class ChessBoard extends Canvas implements PropertyChangeListener {
 		for (int i=0;i< board.length;i++) {
 			for (int j=0;j<board[0].length;j++) {
 				if (board[i][j]!=null) {
+					int finalI = i;
+					int finalJ = j;
 
 					JPanel panel = new JPanel() {
 
@@ -74,12 +105,12 @@ public class ChessBoard extends Canvas implements PropertyChangeListener {
 
 							super.paintComponent(g);
 
-							g.drawImage(board[i][j].getImage(),i* RECTSIZE,j* RECTSIZE,this);
+							g.drawImage(board[finalI][finalJ].getImage(), finalI*RECTSIZE, finalJ* RECTSIZE, null);
 						}
 
 					};
 
-					pieceLayer.add(panel);
+					piecesPanel.add(panel);
 
 				}
 			}

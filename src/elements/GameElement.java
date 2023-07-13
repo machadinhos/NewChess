@@ -1,19 +1,19 @@
-package elements;
+	package elements;
 
-import java.awt.*;
+	import java.awt.*;
 
-public abstract class GameElement {
+	public abstract class GameElement {
 
-	private final Point position;
+		private final Point position;
 
-	public GameElement(final int col, final int row) {
-		this.position = new Point(col, row);
+		public GameElement(final int col, final int row) {
+			this.position = new Point(col, row);
+		}
+
+
+		public Point getPosition () {
+			return position;
+		}
+
+		public abstract Image getImage();
 	}
-
-
-	public Point getPosition () {
-		return position;
-	}
-
-	public abstract Image getImage();
-}

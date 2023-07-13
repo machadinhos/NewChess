@@ -1,0 +1,24 @@
+
+Q
+java:S1066"/Merge this if statement with the enclosing one.(’–ÿ€ûÿÿÿÿ8¿öÃç‘1
+M
+java:S1066€"/Merge this if statement with the enclosing one.(æ‰£€8ÁöÃç‘1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(”Ùèí8ÃëýŒ’1
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ÿ£€¶8ËýÃç‘1
+i
+java:S1871("LThis branch's code block is the same as the block for the branch on line 31.(ÑÁ³é8ÒýÃç‘1
+t
+java:S3776="RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(îùÝÖøÿÿÿÿ8ìýÃç‘1
+p
+java:S1871’"MThis branch's code block is the same as the block for the branch on line 143.(Õ‚¤¤ýÿÿÿÿ8¿þÃç‘1
+p
+java:S3776«"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ûõ“‚8ÏþÃç‘1
+p
+java:S1871·"MThis branch's code block is the same as the block for the branch on line 177.(Ë˜Âˆùÿÿÿÿ8ÙþÃç‘1
+p
+java:S1871´"MThis branch's code block is the same as the block for the branch on line 177.(¯¢ˆ‡ÿÿÿÿÿ8ØþÃç‘1
+p
+java:S1871À"MThis branch's code block is the same as the block for the branch on line 189.(¯ê¹×þÿÿÿÿ8èþÃç‘1
+p
+java:S1871Ã"MThis branch's code block is the same as the block for the branch on line 189.(Ì¡©áûÿÿÿÿ8çþÃç‘1
